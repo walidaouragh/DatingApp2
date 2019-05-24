@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MessagesComponent } from './messages/messages.component';
@@ -33,6 +33,12 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagmentComponent } from './admin/photo-managment/photo-managment.component';
+import { AdminService } from './_services/admin.service';
+import { EditRolesModalComponent } from './admin/edit-roles-modal/edit-roles-modal.component';
 
 
 export function tokenGetter() {
@@ -53,7 +59,12 @@ export function tokenGetter() {
       MemberEditComponent,
       PhotoEditorComponent,
       TimeAgoPipe,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagmentComponent,
+      EditRolesModalComponent
    ],
    imports: [
       BrowserModule,
@@ -62,6 +73,7 @@ export function tokenGetter() {
       ReactiveFormsModule,
       NgxGalleryModule,
       FileUploadModule,
+      ModalModule.forRoot(),
       ButtonsModule.forRoot(),
       PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
@@ -88,10 +100,12 @@ export function tokenGetter() {
       MemberEditResolver,
       PreventUnsavedChanges,
       ListsResolver,
-      MessagesResolver
+      MessagesResolver,
+      AdminService
     ],
    bootstrap: [
       AppComponent
-   ]
+   ],
+   entryComponents: [EditRolesModalComponent]
 })
 export class AppModule { }

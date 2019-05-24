@@ -47,4 +47,15 @@ loggedIn() {
     return !this.jwthelper.isTokenExpired(token);
 }
 
+roleMatch(allowRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowRoles.forEach(element => {
+        if (userRoles.includes(element)) {
+            isMatch = true;
+            return;
+        }
+    });
+    return isMatch;
+}
 }

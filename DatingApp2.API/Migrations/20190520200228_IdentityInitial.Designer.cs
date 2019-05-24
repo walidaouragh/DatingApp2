@@ -3,14 +3,16 @@ using System;
 using DatingApp2.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatingApp2.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190520200228_IdentityInitial")]
+    partial class IdentityInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +69,6 @@ namespace DatingApp2.API.Migrations
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Description");
-
-                    b.Property<bool>("IsApproved");
 
                     b.Property<bool>("IsMain");
 

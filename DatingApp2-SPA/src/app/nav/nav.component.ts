@@ -23,7 +23,6 @@ export class NavComponent implements OnInit {
       this.alertify.success('Logged In Seccessfully!');
       this.router.navigate(['/members']);
       // this.model = {};
-      console.log('************', this.model);
     }, err => {
       this.alertify.error(err);
     });

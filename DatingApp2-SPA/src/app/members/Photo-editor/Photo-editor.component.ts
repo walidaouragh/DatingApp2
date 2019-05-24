@@ -43,7 +43,7 @@ export class PhotoEditorComponent implements OnInit {
       maxFileSize: 10 * 1024 * 1024
     });
 
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; }
+    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
@@ -53,7 +53,8 @@ export class PhotoEditorComponent implements OnInit {
           url: res.url,
           dateAdded: res.dateAdded,
           description: res.description,
-          isMain: res.isMain
+          isMain: res.isMain,
+          isApproved: res.isApproved
         };
         this.photos.push(photo);
         if (photo.isMain) {
