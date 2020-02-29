@@ -24,6 +24,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace DatingApp2.API
 {
@@ -39,9 +40,9 @@ namespace DatingApp2.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetSection("Dating")["ConnStr"]));
 
-            IdentityBuilder builder = services.AddIdentityCore<User>(opt => 
+            IdentityBuilder builder = services.AddIdentityCore<User>(opt =>
             {
                 opt.Password.RequireDigit = false;
                 opt.Password.RequiredLength = 4;
@@ -67,19 +68,19 @@ namespace DatingApp2.API
                     };
                 });
 
-            services.AddAuthorization(options => 
+            services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
                 options.AddPolicy("VipOnly", policy => policy.RequireRole("VIP"));
-            });    
+            });
 
-            services.AddMvc(options => 
+            services.AddMvc(options =>
                     {
                         var policy = new AuthorizationPolicyBuilder()
                              .RequireAuthenticatedUser()
                              .Build();
-                        options.Filters.Add(new AuthorizeFilter(policy));     
+                        options.Filters.Add(new AuthorizeFilter(policy));
                     }
                 )
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -93,7 +94,17 @@ namespace DatingApp2.API
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddScoped<IDatingRepository, DatingRepository>();
-            services.AddScoped<LogUserActivity>();    
+            services.AddScoped<LogUserActivity>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "DatingApp API",
+                    Description = "A simple example ASP.NET Core Web API"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,7 +121,7 @@ namespace DatingApp2.API
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                         var error = context.Features.Get<IExceptionHandlerFeature>();
-                        if (error != null) 
+                        if (error != null)
                         {
                             context.Response.AddApplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
@@ -126,6 +137,12 @@ namespace DatingApp2.API
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My DatingApp API V1");
+                c.RoutePrefix = "swagger/ui";
+            });
         }
     }
 }
