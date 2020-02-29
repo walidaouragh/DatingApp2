@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\waouragh\.Rider2019.1\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\waouragh\.Rider2019.1\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\waouragh\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\waouragh\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_.19.01" t="ExcludeRecursive" />
+    <e p="C:\Users\waouragh\Projects\Dating" t="IncludeFlat">
+      <e p="DatingApp2-SPA\node_modules\@angular\animations" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\cli" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\common" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\compiler" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\compiler-cli" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\core" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\forms" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\platform-browser" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\platform-browser-dynamic" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular\router" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@angular-devkit\build-angular" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@auth0\angular-jwt" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\@types" t="IncludeRecursive">
+        <e p="jasmine" t="IncludeRecursive" />
+        <e p="jasminewd2" t="IncludeRecursive" />
+        <e p="node" t="IncludeRecursive" />
+        <e p="source-list-map" t="IncludeRecursive" />
+      </e>
+      <e p="DatingApp2-SPA\node_modules\alertifyjs" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\bootstrap" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\bootswatch" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\codelyzer" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\core-js" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\font-awesome" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\jasmine-core" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\jasmine-spec-reporter" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\karma" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\karma-chrome-launcher" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\karma-coverage-istanbul-reporter" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\karma-jasmine" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\karma-jasmine-html-reporter" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\ng2-file-upload" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\ngx-bootstrap" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\ngx-gallery" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\protractor" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\rxjs" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\source-map" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\time-ago-pipe" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\ts-node" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\tslib" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\tslint" t="IncludeRecursive" />
+      <e p="DatingApp2-SPA\node_modules\zone.js" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>

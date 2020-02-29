@@ -50,7 +50,7 @@ namespace DatingApp2.API.Controllers
             {
                 return CreatedAtRoute("GetUser", new {controller = "Users", id = userToCreate.Id}, userToReturn);
             }
-            
+
             return BadRequest(result.Errors);
         }
 
@@ -90,7 +90,7 @@ namespace DatingApp2.API.Controllers
 
             foreach (var role in roles)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role));  
+                claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
