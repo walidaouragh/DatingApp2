@@ -1,4 +1,4 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MemberlistComponent } from './members/memberlist/memberlist.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -15,22 +15,24 @@ import { MessagesResolver } from './_resolvers/messages.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 export const appRoutes: Routes = [
-    {path: '', component: HomeComponent},
-    {
-        path: '',
-        runGuardsAndResolvers: 'always',
-        canActivate: [AuthGuard],
-        children: [
-            {path: 'members', component: MemberlistComponent, resolve: {users: MemberListResolver}},
-            {path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
-            {path: 'member/edit',
-                component: MemberEditComponent,
-                canDeactivate: [PreventUnsavedChanges],
-                resolve: {user: MemberEditResolver}},
-            {path: 'messages', component: MessagesComponent, resolve: {messages: MessagesResolver}},
-            {path: 'lists', component: ListsComponent, resolve: {users: ListsResolver}},
-            {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Moderator']}}
-        ]
-    },
-    {path: '**', redirectTo: '', pathMatch: 'full'}
+	{ path: '', component: HomeComponent },
+	{
+		path: '',
+		runGuardsAndResolvers: 'always',
+		canActivate: [AuthGuard],
+		children: [
+			{ path: 'members', component: MemberlistComponent, resolve: { users: MemberListResolver } },
+			{ path: 'members/:id', component: MemberDetailComponent, resolve: { user: MemberDetailResolver } },
+			{
+				path: 'member/edit',
+				component: MemberEditComponent,
+				canDeactivate: [PreventUnsavedChanges],
+				resolve: { user: MemberEditResolver }
+			},
+			{ path: 'messages', component: MessagesComponent, resolve: { messages: MessagesResolver } },
+			{ path: 'lists', component: ListsComponent, resolve: { users: ListsResolver } },
+			{ path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Moderator'] } }
+		]
+	},
+	{ path: '**', redirectTo: '', pathMatch: 'full' }
 ];

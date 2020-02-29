@@ -3,24 +3,21 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { User } from 'src/app/_models/user';
 
 @Component({
-  selector: 'app-edit-roles-modal',
-  templateUrl: './edit-roles-modal.component.html',
-  styleUrls: ['./edit-roles-modal.component.css']
+	selector: 'app-edit-roles-modal',
+	templateUrl: './edit-roles-modal.component.html',
+	styleUrls: ['./edit-roles-modal.component.css']
 })
 export class EditRolesModalComponent implements OnInit {
+	@Output() updateSelectedRoles = new EventEmitter();
+	user: User;
+	roles: any[];
 
-  @Output() updateSelectedRoles = new EventEmitter();
-  user: User;
-  roles: any[];
+	constructor(public bsModalRef: BsModalRef) {}
 
-  constructor(public bsModalRef: BsModalRef) { }
+	ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  updateRoles() {
-    this.updateSelectedRoles.emit(this.roles);
-    this.bsModalRef.hide();
-  }
-
+	updateRoles() {
+		this.updateSelectedRoles.emit(this.roles);
+		this.bsModalRef.hide();
+	}
 }

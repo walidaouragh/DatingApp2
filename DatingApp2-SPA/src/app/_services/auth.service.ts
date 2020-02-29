@@ -6,56 +6,54 @@ import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
 
-
 @Injectable()
 export class AuthService {
+	constructor(private http: HttpClient) {}
 
-constructor(private http: HttpClient) { }
+	baseUrl = environment.apiUrl + 'auth/';
+	jwthelper = new JwtHelperService();
+	decodedToken: any;
+	currentUser: User;
+	photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+	currentPhotoUrl = this.photoUrl.asObservable();
 
-baseUrl = environment.apiUrl + 'auth/';
-jwthelper = new JwtHelperService();
-decodedToken: any;
-currentUser: User;
-photoUrl = new BehaviorSubject<string>('../../assets/user.png');
-currentPhotoUrl = this.photoUrl.asObservable();
+	changeMemberPhoto(photoUrl: string) {
+		this.photoUrl.next(photoUrl);
+	}
 
-changeMemberPhoto(photoUrl: string) {
-    this.photoUrl.next(photoUrl);
-  }
+	login(model: any) {
+		return this.http.post(this.baseUrl + 'login', model).pipe(
+			map(res => {
+				const user: any = res;
+				if (user) {
+					localStorage.setItem('token', user.token);
+					localStorage.setItem('user', JSON.stringify(user.user));
+					this.decodedToken = this.jwthelper.decodeToken(user.token);
+					this.currentUser = user.user;
+					this.changeMemberPhoto(this.currentUser.photoUrl);
+				}
+			})
+		);
+	}
 
-login(model: any) {
-    return this.http.post(this.baseUrl + 'login', model).pipe(
-        map(res => {
-            const user: any = res;
-            if (user) {
-                localStorage.setItem('token', user.token);
-                localStorage.setItem('user', JSON.stringify(user.user));
-                this.decodedToken = this.jwthelper.decodeToken(user.token);
-                this.currentUser = user.user;
-                this.changeMemberPhoto(this.currentUser.photoUrl);
-            }
-        })
-    );
-}
+	register(user: User) {
+		return this.http.post(this.baseUrl + 'register', user);
+	}
 
-register(user: User) {
-    return this.http.post(this.baseUrl + 'register', user);
-}
+	loggedIn() {
+		const token = localStorage.getItem('token');
+		return !this.jwthelper.isTokenExpired(token);
+	}
 
-loggedIn() {
-    const token = localStorage.getItem('token');
-    return !this.jwthelper.isTokenExpired(token);
-}
-
-roleMatch(allowRoles): boolean {
-    let isMatch = false;
-    const userRoles = this.decodedToken.role as Array<string>;
-    allowRoles.forEach(element => {
-        if (userRoles.includes(element)) {
-            isMatch = true;
-            return;
-        }
-    });
-    return isMatch;
-}
+	roleMatch(allowRoles): boolean {
+		let isMatch = false;
+		const userRoles = this.decodedToken.role as Array<string>;
+		allowRoles.forEach(element => {
+			if (userRoles.includes(element)) {
+				isMatch = true;
+				return;
+			}
+		});
+		return isMatch;
+	}
 }
